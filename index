@@ -1,8 +1,8 @@
 #!/bin/bash
-if [ $# -ne 1 ];then 
-	echo "Usage: index on|off"
-else
-	docker exec ft_server bash -c \
+if [ $# -eq 1 ] && [[ "$1" == 'on' || "$1" == 'off' ]];then
+	docker exec nginx bash -c \
 	"sed -Ei 's/autoindex (on|off)/autoindex $1/' /etc/nginx/sites-available/default;\
 		nginx -s reload;"
+else
+	echo "Usage: index on|off"
 fi

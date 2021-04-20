@@ -2,10 +2,10 @@
 
 docker build . -t t_server
 if [[ "$1" == "-s" ]]; then
-	docker run t_server --name 
+	docker run t_server
 else
-	docker run --rm --name ft_server -d -p80:80 -p443:443 t_server
+	docker run --rm --name nginx -d -p80:80 -p443:443 t_server
 fi
 if [[ "$1" == "-it" ]]; then
-	docker exec -it ft_server bash 
+	docker exec -it nginx bash 
 fi
